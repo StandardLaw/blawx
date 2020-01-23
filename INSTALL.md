@@ -77,16 +77,30 @@ sudo npm install -g blockly
 ## Install xmlhttprequest
 `sudo npm install -g xmlhttprequest`
 
-## Install Flora-2
+## Install Subversion
+`sudo apt install subversion`
 
-Follow the [instructions](http://flora.sourceforge.net/installation.html)
-for installing XSB and Flora-2 from source code. Do not install using the pre-built binaries, because the installation will not
-complete properly.
+## Install XSB From Source
+`svn checkout  https://svn.code.sf.net/p/xsb/src/trunk xsb-src`
+`sudo mv xsb-src /var/xsb-src`
+`cd /var/xsb-src/XSB/build`
+`./configure`
+`./makexsb`
+`cd /var/`
+`sudo mkdir Flora-2`
+`sudo mv xwb-src/XSB Flora-2`
 
-You probably want to be logged in as www-data (`sudo -u www-data /bin/bash`) before installing to ensure that the user that the Apache
-server runs as will have the right permissions to the Flora-2 files. If you install as root, permissions will be incorrect.
+## Install Flora-2 From Source
+`cd ~`
+`svn checkout https://svn.code.sf.net/p/flora/src/trunk flora-src`
+`sudo mv flora-src /var/flora-src`
+`cd /var/flora-src/flora2`
+`./makeflora clean`
+`./makeflora all /var/Flora-2/XSB/bin/xsb`
 
-You may need to run
-`sudo apt install subversion` if you don't already have access to `svn` to checkout the source code for XSB and Flora-2.
+## ISSUES
+So this process seems promising, but I'm currently getting errors about missing header files. I'm also expecting that I'm going to have to do something to give www-data access to run Flora-2. If that works, need to remove the sudo configuration above.
+
+## Finished
 
 You should now be able to go to http://localhost/blawx.html, create code, and execute the "Run Blawx Code" command and get an answer from your server.
