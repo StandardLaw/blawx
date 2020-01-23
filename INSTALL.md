@@ -78,18 +78,15 @@ sudo npm install -g blockly
 `sudo npm install -g xmlhttprequest`
 
 ## Install Flora-2
-Find the linux binary download for Flora-2, and place it in /var, giving it the name flora2.run, and run
-`sudo sh flora2.run`
 
-On my installation, the installation process did not complete properly, and I had to take the following steps:
-Find the XSB folder created in /tmp. Go there, and then follow the instructions for making and building XSB from the XSB manual.
-Copy the XSB temp folder to /var/Flora-2/XSB.
-Then follow the instructions for making and building Flora-2 from the Flora-2 manual.
+Follow the [instructions](http://flora.sourceforge.net/installation.html)
+for installing XSB and Flora-2 from source code. Do not install using the pre-built binaries, because the installation will not
+complete properly.
 
-Created a .flora_paths file in `/var/Flora-2/flora2` containing
-```
-FLORADIR="/var/Flora-2/flora2"
-PROLOG="/var/Flora-2/XSB/bin/xsb"
-```
+You probably want to be logged in as www-data (`sudo -u www-data /bin/bash`) before installing to ensure that the user that the Apache
+server runs as will have the right permissions to the Flora-2 files. If you install as root, permissions will be incorrect.
+
+You may need to run
+`sudo apt install subversion` if you don't already have access to `svn` to checkout the source code for XSB and Flora-2.
 
 You should now be able to go to http://localhost/blawx.html, create code, and execute the "Run Blawx Code" command and get an answer from your server.
